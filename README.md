@@ -200,11 +200,13 @@ Dashboard View
 * 19 - distance - nose to upper left corner of the image
 * 22 - distance - nose to left shoulder
 * 30 - distance - left elbow to left hip
+
 Rearview Mirror View
 * 59 - angle - right wrist, left lower corner, left upper corner of the image 
 * 62 - angle - right elbow (right shoulder, right elbow, right wrist)
 * 76 - distance - nose to upper left corner
 * 78 - distance - right wrist to upper left corner
+
 Right Side Camera View
 * 120 - angle - right shoulder (right elbow, right shoulder, right hip)
 * 132 - distance - right wrist to lower left corner
