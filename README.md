@@ -1,11 +1,11 @@
 # Key Point-Based Naturalistic Driving Action Recognition (KNDAR)
 
-This project includes our solution for Track 3 of the [2022 AI City Challenge AIC2022](http://https://www.aicitychallenge.org/), solving the problem of naturalistic driving action recognition. Given video input from three different views of a driver inside a car (right side, dashboard, and rearview mirror cameras), we developed a method to identify one of 18 different actions the driver may be performing, including:
+This project includes our solution for Track 3 of the [2022 AI City Challenge](http://https://www.aicitychallenge.org/), solving the problem of naturalistic driving action recognition. Given video input from three different views of a driver inside a car (right side, dashboard, and rearview mirror cameras), we developed a method to identify one of 18 different actions the driver may be performing, including:
 
 0. Normal forward driving
 1. Drinking
-2. Phone call(right)
-3. Phone call(left)
+2. Phone call (right)
+3. Phone call (left)
 4. Eating
 5. Text (right)
 6. Text (left)
@@ -20,6 +20,10 @@ This project includes our solution for Track 3 of the [2022 AI City Challenge AI
 15. Hand on head
 16. Singing with music
 17. Shaking or dancing with music
+
+Pose Detection             |  Face Detection
+:-------------------------:|:-------------------------:
+![Pose Detection ](images/example_pose_face-det-sm.png)  |  ![Face Detection](images/example-face-det-sm.png)
 
 ## Method
 
@@ -60,9 +64,9 @@ video_id activity_id ts_start ts_end
 ## Workflow
 
 The KNDAR framework has 3 stages: 
-1. Extract features from the input data
-2. Train or apply frame classification model on extracted features
-3. Merge classified frames into predicted action-consistent segments
+1. Extract features from the input data.
+2. Train or apply frame classification model on extracted features.
+3. Merge classified frames into predicted action-consistent segments.
 
 In the following, we will give an example of applying a pre-trained KNDAR model to dataset A2, and training a new model for dataset A1.
 
@@ -92,7 +96,7 @@ In the following, we will give an example of applying a pre-trained KNDAR model 
 The model will be written to models/A1-all-5-f-600-8.pkl. Additionally, several figures will be saved showing validation mean logloss, mean error, and feature importance.
 
 
-4. Perform inference on the test set using the trained model. Results will be written to models/A1-all-5-f-600-8-result-test.txt.
+3. Perform inference on the test set using the trained model. Results will be written to models/A1-all-5-f-600-8-result-test.txt.
     ```python
     python test.py --test A2-all-5-f.npz --model models/A1-all-5-f-600-8.pkl --mgap 90 --minlen 350 --maxp 0.15
     ```
@@ -176,30 +180,35 @@ Following is a list of features that are computed by KNDAR in each key frame for
 56. distance between lower part of upper lip and top part of bottom lip
 
 
-
 ## Results of the best submitted model
 
 We submitted several results to the AIC 2022 challenge. Of all the models we submitted, the following model had the best performance on the full test set.
 
-    - all-5-f-600-8: extract features from all camera views, using keyframes every 5 frames; extract both pose and facial features; train an XGBoost model with 600 estimators and max tree depth of 8; perform classification inference and merge key frame labels.
+* all-5-f-600-8: 
+    - extract features from all camera views, using keyframes every 5 frames,
+    - extract both pose and facial features,
+    - train an XGBoost model with 600 estimators and max tree depth of 8,
+    - perform classification inference and merge key frame labels.
 
 ### Feature importances of the best model
 
 We analized the XGBoost feature imporances for the best performing model and found the following 10 features had the highest weights among the 171 extracted features.
 
+![Feature Importances for Our Best Model](images/importances-600-8-fi.png)
+
 Dashboard View
-19 - distance - nose to upper left corner of the image
-22 - distance - nose to left shoulder
-30 - distance - left elbow to left hip
+* 19 - distance - nose to upper left corner of the image
+* 22 - distance - nose to left shoulder
+* 30 - distance - left elbow to left hip
 Rearview Mirror View
-59 - angle - right wrist, left lower corner, left upper corner of the image 
-62 - angle - right elbow (right shoulder, right elbow, right wrist)
-76 - distance - nose to upper left corner
-78 - distance - right wrist to upper left corner
+* 59 - angle - right wrist, left lower corner, left upper corner of the image 
+* 62 - angle - right elbow (right shoulder, right elbow, right wrist)
+* 76 - distance - nose to upper left corner
+* 78 - distance - right wrist to upper left corner
 Right Side Camera View
-120 - angle - right shoulder (right elbow, right shoulder, right hip)
-132 - distance - right wrist to lower left corner
-135 - distance - right wrist to upper left corner
+* 120 - angle - right shoulder (right elbow, right shoulder, right hip)
+* 132 - distance - right wrist to lower left corner
+* 135 - distance - right wrist to upper left corner
 
 
 ## Execution instructions to re-create the AIC22 model and results
