@@ -21,13 +21,13 @@ This project includes our solution for Track 3 of the [2022 AI City Challenge](h
 16. Singing with music
 17. Shaking or dancing with music
 
-Pose Detection             |  Face Detection
-:-------------------------:|:-------------------------:
-![Pose Detection ](images/example_pose_face-det-sm.png)  |  ![Face Detection](images/example-face-det-sm.png)
-
 ## Method
 
 The main idea of this work is that driver activity can be determined from the movement of key points on their body. As such, we can use a pre-trained pose estimation model to identify key points (e.g., nose, right ear, left wrist), and derive features from these key points. Features include angles between key points (e.g., angle of the segments created by nose, left ear, and left eye), distances between key points (e.g., left wrist to left hip), position information (distance from center to corner of the image), shifts between some of the current key points and the respective ones in the last key frame, and shifts between certain angles and the respective angles in the last key frame.
+
+Pose Detection             |  Face Detection
+:-------------------------:|:-------------------------:
+![Pose Detection ](images/example_pose_face-det-sm.png)  |  ![Face Detection](images/example-face-det-sm.png)
 
 ## <a name="installation"></a>Installation
 
